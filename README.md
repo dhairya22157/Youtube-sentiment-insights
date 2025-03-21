@@ -68,10 +68,13 @@ http://localhost:5000/predict
     "comments": ["This video is awesome! I loved it a lot", "Very bad explanation. Poor video"]
 }
 ```
+positive sentiment = 1
+negative sentiment = 0
+neutral sentiment = -1
  Expected JSON Response:
 ```json
 {
-    "sentiments": ["positive", "negative"]
+    "sentiments": ["1", "0"]
 }
 ```
 
