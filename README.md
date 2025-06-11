@@ -1,7 +1,3 @@
-Here’s your enhanced and **cleanly formatted README.md** in markdown, with all sections organized using bullet points, code blocks, and clear headers for maximum readability on GitHub or other platforms.
-
----
-
 # 🎥 YouTube Sentiment Insights
 
 ## 🔍 Project Overview
@@ -30,12 +26,17 @@ Here’s your enhanced and **cleanly formatted README.md** in markdown, with all
 
 ## 📊 Dashboard & Chrome Extension
 
-We built an intuitive **dashboard for creators**, featuring:
+built an intuitive **dashboard for creators**, featuring:
 
 * 📌 Overall sentiment distribution (pie chart)
 * 📈 Viewer sentiment trend over time
 * 💬 Top comments and keyword cloud
 * 🚀 Instant overlay on YouTube through the Chrome Extension
+<img src="images/1.png" alt="Dashboard Summary" width="600"/>
+*Figure 1: Main dashboard view*
+
+<img src="images/2.png" alt="Top Comments" width="600"/>
+*Figure 2: Top comments and sentiment trend*
 
 ## 🧠 Problem Statement
 
