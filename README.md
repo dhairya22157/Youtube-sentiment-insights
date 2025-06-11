@@ -1,13 +1,13 @@
 # YouTube Sentiment Insights
 
  Overview
-YouTube Sentiment Insights is a **Chrome extension** and **Flask-based API** that analyzes YouTube comments to provide sentiment insights. It classifies comments into **positive, neutral, and negative** categories, helping users quickly understand audience reactions to a video. The project is deployed on **AWS** and uses **DVC** for managing data workflows.
+YouTube Sentiment Insights is a **Chrome extension plugin** and **Flask-based API** that analyzes YouTube comments to provide sentiment insights. It classifies comments into **positive, neutral, and negative** categories, helping users quickly understand audience reactions to a video. 
 
  Features
 - Fetches and analyzes YouTube comments using **YouTube API**.
 - **Sentiment classification** using NLP models.
 - Chrome extension for seamless integration.
-- Backend powered by **Flask** and deployed on **AWS**.
+- Backend powered by **Flask** and will be deploying on **AWS** in future.
 - Uses **DVC** for data version control.
 - **Insightful Visualizations**:
   - **Comment Analysis Summary**: Displays total comments, unique commenters, average comment length, and sentiment score.
