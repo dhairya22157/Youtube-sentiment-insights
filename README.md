@@ -32,11 +32,13 @@ built an intuitive **dashboard for creators**, featuring:
 * 📈 Viewer sentiment trend over time
 * 💬 Top comments and keyword cloud
 * 🚀 Instant overlay on YouTube through the Chrome Extension
+ Figure 1: Main dashboard view
+
 <img src="images/1.png" alt="Dashboard Summary" width="600"/>
-*Figure 1: Main dashboard view*
+
+*Figure 2: Top comments and sentiment trend*
 
 <img src="images/2.png" alt="Top Comments" width="600"/>
-*Figure 2: Top comments and sentiment trend*
 
 ## 🧠 Problem Statement
 
@@ -53,9 +55,7 @@ A **multi-class classification** problem to automatically label each YouTube com
 ## 📂 Dataset Description
 
 * 🧾 **Primary Dataset**: Reddit comments with labeled sentiments
-* 👥 **Simulates YouTube comment behavior**
-* 🧠 Used for model training
-* 🛰️ Real-time comments fetched from **YouTube Data API**
+* 👥 **It Simulates YouTube comment behavior**
 
 **Structure**:
 
@@ -98,7 +98,6 @@ comment_text,sentiment
 
 * Versioning using **DVC**
 * Tracked experiments using **MLFlow**
-* Model registered and reproducible
 
 ### 🌐 Deployment
 
@@ -160,10 +159,6 @@ aws configure
 # 6. Run the Flask API
 python app.py
 ```
-
-🔗 Visit: [http://localhost:5000/](http://localhost:5000/)
-
----
 
 ## 🧪 Running the API
 
