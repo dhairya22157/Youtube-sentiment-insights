@@ -1,110 +1,200 @@
-# YouTube Sentiment Insights
-
- Overview
-YouTube Sentiment Insights is a **Chrome extension plugin** and **Flask-based API** that analyzes YouTube comments to provide sentiment insights. It classifies comments into **positive, neutral, and negative** categories, helping users quickly understand audience reactions to a video. 
-
- Features
-- Fetches and analyzes YouTube comments using **YouTube API**.
-- **Sentiment classification** using NLP models.
-- Chrome extension for seamless integration.
-- Backend powered by **Flask** and will be deploying on **AWS** in future.
-- Uses **DVC** for data version control.
-- **Insightful Visualizations**:
-  - **Comment Analysis Summary**: Displays total comments, unique commenters, average comment length, and sentiment score.
-  - **Sentiment Analysis Results**: Pie chart visualization of sentiment distribution (Positive, Neutral, Negative).
-  - **Sentiment Trend Over Time**: Line chart showing sentiment trends over time.
-  - **Comment Word Cloud**: Highlights frequently used words in comments.
-  - **Top Comments with Sentiments**: Lists top comments with associated sentiment labels.
+Here’s your enhanced and **cleanly formatted README.md** in markdown, with all sections organized using bullet points, code blocks, and clear headers for maximum readability on GitHub or other platforms.
 
 ---
 
- Installation & Setup
-# 1. Clone the Repository
+# 🎥 YouTube Sentiment Insights
+
+## 🔍 Project Overview
+
+**YouTube Sentiment Insights** is an end-to-end sentiment analysis system built for content creators (or anyone interested) to automatically analyze YouTube comments.
+
+* Integrates a **Chrome Extension** and **Flask-based backend API**
+* Classifies YouTube comments as:
+
+  * ✅ Positive
+  * ⚪ Neutral
+  * ❌ Negative
+* Helps creators understand viewer sentiment without manually reading all comments
+
+---
+
+## 🚀 Highlights
+
+* 🔗 Easy-to-use Chrome Extension integrated into YouTube
+* 📊 Interactive dashboard for sentiment trends and summaries
+* 🔄 ML pipeline built using DVC for full version control
+* 🐳 Dockerized and ready for CI/CD & AWS deployment
+* 📈 ML models managed via MLFlow, with SMOTE, TF-IDF, and LightGBM for best performance
+
+---
+
+## 📊 Dashboard & Chrome Extension
+
+We built an intuitive **dashboard for creators**, featuring:
+
+* 📌 Overall sentiment distribution (pie chart)
+* 📈 Viewer sentiment trend over time
+* 💬 Top comments and keyword cloud
+* 🚀 Instant overlay on YouTube through the Chrome Extension
+
+## 🧠 Problem Statement
+
+A **multi-class classification** problem to automatically label each YouTube comment as:
+
+* Positive → `1`
+* Neutral → `0`
+* Negative → `-1`
+
+**Goal**: Save time for creators and help them **adapt content based on real feedback.**
+
+---
+
+## 📂 Dataset Description
+
+* 🧾 **Primary Dataset**: Reddit comments with labeled sentiments
+* 👥 **Simulates YouTube comment behavior**
+* 🧠 Used for model training
+* 🛰️ Real-time comments fetched from **YouTube Data API**
+
+**Structure**:
+
+```csv
+comment_text,sentiment
+"Great explanation!",1
+"I don't understand anything", -1
+```
+
+---
+
+## 🔧 Pipeline & Methodology
+
+### 📥 Data Collection
+
+* Reddit comments dataset for training
+* YouTube Data API for live comment fetch
+
+### 🧹 Preprocessing & EDA
+
+* Text cleaning: lowercasing, removing punctuation, stopwords
+* N-gram feature extraction (bigrams, trigrams)
+* Visuals: WordClouds, sentiment charts
+
+### 🧪 Baseline Modeling
+
+* CountVectorizer (10k features): \~64% accuracy
+* TF-IDF with trigrams (max features = 1000)
+
+### ⚖️ Handling Imbalance
+
+* Used **SMOTE** to oversample under-represented classes (neutral/negative)
+
+### 📊 Model Training
+
+* Tried models: Naive Bayes, Logistic Regression, Decision Tree, XGBoost
+* ✅ Best model: **LightGBM** (after tuning)
+
+### 📦 Model Management
+
+* Versioning using **DVC**
+* Tracked experiments using **MLFlow**
+* Model registered and reproducible
+
+### 🌐 Deployment
+
+* Backend built using Flask
+* Containerized via Docker
+* CI/CD pipeline using GitHub Actions
+* To be deployed on **AWS EC2**
+
+### 🧩 Chrome Extension
+
+* Embedded directly in YouTube’s video page
+* Fetches visible comments
+* Sends to backend for analysis
+* Displays dashboard overlay on the video
+
+---
+
+## 📈 Insightful Visualizations
+
+* ✅ **Comment Analysis Summary**
+  → Total comments, unique users, average length, sentiment score
+
+* 📊 **Sentiment Pie Chart**
+  → Positive / Neutral / Negative %
+
+* ⏱️ **Sentiment Over Time**
+  → Trend line showing change across timeline
+
+* ☁️ **Word Cloud**
+  → Frequently used keywords
+
+* 💬 **Top Comments with Sentiment**
+  → Lists high-liked comments + predicted sentiment
+
+---
+
+## 🖥️ Installation & Setup
+
 ```bash
+# 1. Clone the Repository
 git clone https://github.com/your-repo/youtube-sentiment-insights.git
 cd youtube-sentiment-insights
-```
 
-# 2. Create and Activate Virtual Environment
-```bash
+# 2. Create Virtual Environment
 conda create -n youtube python=3.11 -y
 conda activate youtube
-```
 
-# 3. Install Dependencies
-```bash
+# 3. Install Required Packages
 pip install -r requirements.txt
-```
 
-# 4. Initialize DVC
-```bash
+# 4. Initialize DVC Pipeline
 dvc init
 dvc repro
 dvc dag
-```
 
-# 5. Configure AWS (if deploying)
-```bash
+# 5. (Optional) Configure AWS for Deployment
 aws configure
-```
 
-# 6. Run the Application Locally
-```bash
+# 6. Run the Flask API
 python app.py
 ```
-By default, the server runs on `http://localhost:5000/`.
+
+🔗 Visit: [http://localhost:5000/](http://localhost:5000/)
 
 ---
 
- Running the Project
-# 1. Test API using Postman
-You can send a **POST** request to the following endpoint to analyze sentiment:
-```bash
-http://localhost:5000/predict
-```
- Example JSON Request:
-```json
+## 🧪 Running the API
+
+### 📤 Sample Request
+
+```http
+POST /predict
+Content-Type: application/json
+
 {
-    "comments": ["This video is awesome! I loved it a lot", "Very bad explanation. Poor video"]
-}
-```
-positive sentiment = 1
-negative sentiment = 0
-neutral sentiment = -1
- Expected JSON Response:
-```json
-{
-    "sentiments": ["1", "0"]
+  "comments": [
+    "This video is awesome! I loved it a lot",
+    "Very bad explanation. Poor video"
+  ]
 }
 ```
 
-# 2. Load Chrome Extension
-```bash
-chrome://extensions/
+### 📥 Expected Response
+
+```json
+{
+  "sentiments": ["1", "-1"]
+}
 ```
-1. Open `chrome://extensions/` in your browser.
-2. Enable **Developer mode** (toggle at the top-right corner).
-3. Click **Load unpacked** and select the `extension` folder from this project.
-4. The extension will now be available in your browser.
 
 ---
 
- How to Get YouTube API Key
-To fetch YouTube comments, you need an API key from **Google Cloud Platform (GCP)**. Follow this tutorial:
-[How to get a YouTube API key](https://www.youtube.com/watch?v=i_FdiQMwKiw)
+## 🧩 Chrome Extension Setup
 
----
-
- Deployment
-# Deploying to AWS
-```bash
-aws configure
-```
-1. Ensure AWS CLI is configured.
-2. Deploy using a cloud service (EC2, Lambda, or Elastic Beanstalk).
-
----
-Contributing
-Pull requests are welcome! If you find any issues or improvements, feel free to open an issue or submit a PR.
-
+1. Visit: `chrome://extensions/`
+2. Enable **Developer Mode**
+3. Click **Load Unpacked**
+4. Select the `extension/` folder from the project
+5. Now visit a YouTube video → Click the extension → See sentiment insights!
 
